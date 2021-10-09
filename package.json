@@ -1,0 +1,18 @@
+{
+  "name": "lyric.js",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Lyric in Node.js",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test"
+  },
+  "keywords": [
+    "lyric"
+  ],
+  "author": "Lsong",
+  "license": "MIT"
+}
