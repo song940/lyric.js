@@ -1,8 +1,8 @@
 {
   "name": "lyric.js",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
-  "description": "Lyric in Node.js",
+  "description": "Lyric in JavaScript",
   "main": "index.js",
   "directories": {
     "test": "test"
