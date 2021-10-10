@@ -1,49 +1,36 @@
 import assert from 'assert';
 import { parse } from "../index.js";
+import test from './test.js';
 
-const lyric = `
-[00:04.302][02:10.00] hahhah
-[00:00.000] 作词 : 刘家泽
-[00:01.000] 作曲 : 苏晨
-[00:02.000] 制作人 : 苏晨
-[00:17.46]等不到的那句晚安
-[00:21.24]渐渐的我已经习惯
-[00:25.20]失眠成理所当然 想念却肆无忌惮
-[00:29.28]无能为力只能让遗憾自然
-[00:33.30]被你左右的情绪多善感
-[00:37.20]就连一句撤回都在试探
-[00:41.19]就算结局是遗憾 还无止境的纠缠
-[00:45.27]问候都小心翼翼 怕彼此为难
-[00:52.29]我到底要怎么做才能够 被你偏爱
-[00:56.22]是否情话要足够动听 才能叫例外
-[01:00.60]而你置身事外 不动声色就将我击败
-[01:08.28]我到底要什么样的姿态 你才喜爱
-[01:12.30]就像是自卑的丑八怪 在角落期待
-[01:16.29]是否会有个意外 你或许能看到我的存在
-[01:25.35]被你左右的情绪多善感
-[01:29.22]就连一句撤回都在试探
-[01:33.21]就算结局是遗憾 还无止境的纠缠
-[01:37.26]问候都小心翼翼 怕彼此为难
-[01:44.25]我到底要怎么做才能够 被你偏爱
-[01:48.18]是否情话要足够动听 才能叫例外
-[01:52.50]而你置身事外 不动声色就将我击败
-[02:00.24]我到底要什么样的姿态 你才喜爱
-[02:04.26]就像是自卑的丑八怪 在角落期待
-[02:08.19]是否会有个意外 你或许能看到我的存在
-[02:16.32]我到底要怎么做才能够 被你偏爱
-[02:20.22]是否情话要足够动听 才能叫例外
-[02:24.51]而你置身事外 不动声色就将我击败
-[02:32.25]我到底要什么样的姿态 你才喜爱
-[02:36.18]就像是自卑的丑八怪 在角落期待
-[02:40.17]是否会有个意外 你或许能看到我的存在
-[02:47.78]
-[02:47.762] 吉他 : 田宸光
-[02:48.446] 混音 : 冯靖凯
-[02:49.130] 统筹 : 尹文/冯昌榆
-[02:49.814] 监制 : 刘家泽/苏晨
-[02:50.498] 制作公司 : 匠心音乐 x 蔚来音乐 V-LAND Music
+const lyricText = `
+[ar:Chubby Checker oppure  Beatles, The]
+[al:Hits Of The 60's - Vol. 2 – Oldies]
+[ti:Let's Twist Again]
+[au:Written by Kal Mann / Dave Appell, 1961]
+[length: 2:23]
+
+[00:01.00][00:12.00]Naku Penda Piya-Naku Taka Piya-Mpenziwe
+[00:15.30]Some more lyrics ...
 `;
 
-const lyricArr = parse(lyric);
-assert.strictEqual(lyricArr[0].time, '00:00.000');
-assert.strictEqual(lyricArr[1].time, '00:01.000');
+const lyric = parse(lyricText);
+
+test("lyric#parse", () => {
+  assert.ok(lyric);
+});
+
+test("lyric#parse tags", () => {
+  assert.ok(lyric.tags);
+  assert.strictEqual(lyric.tags.length, '2:23');
+  assert.strictEqual(lyric.tags.ar, 'Chubby Checker oppure  Beatles, The');
+  assert.strictEqual(lyric.tags.al, `Hits Of The 60's - Vol. 2 – Oldies`);
+  assert.strictEqual(lyric.tags.ti, `Let's Twist Again`);
+  assert.strictEqual(lyric.tags.au, 'Written by Kal Mann / Dave Appell, 1961');
+});
+
+test("lyric#parse lines", () => {
+  assert.ok(Array.isArray(lyric.lines));
+  assert.strictEqual(lyric.lines[0].time, '00:01.00');
+  assert.strictEqual(lyric.lines[1].time, '00:12.00');
+  assert.strictEqual(lyric.lines[2].time, '00:15.30');
+});

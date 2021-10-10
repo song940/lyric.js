@@ -15,25 +15,49 @@
 import { parse } from "lyric.js";
 
 const lyricText = `
-[00:04.302][02:10.00] A
-[00:00.000] B
-[00:01.000] C
-[00:02.000] D
-[00:17.46] E
+[ar:Chubby Checker oppure  Beatles, The]
+[al:Hits Of The 60's - Vol. 2 – Oldies]
+[ti:Let's Twist Again]
+[au:Written by Kal Mann / Dave Appell, 1961]
+[length: 2:23]
+
+[00:01.00][00:12.00]Naku Penda Piya-Naku Taka Piya-Mpenziwe
+[00:15.30]Some more lyrics ...
 `;
 
-const lyricArr = parse(lyricText);
-console.log(lyricArr);
+const lyric = parse(lyricText);
+console.log(lyric);
+```
 
-// ->
-[
-  { time: '00:00.000', timestamp: 0, content: ' B' },
-  { time: '00:01.000', timestamp: 1000, content: ' C' },
-  { time: '00:02.000', timestamp: 2000, content: ' D' },
-  { time: '00:04.302', timestamp: 4302, content: ' A' },
-  { time: '00:17.46', timestamp: 17046, content: ' E' },
-  { time: '02:10.00', timestamp: 130000, content: ' A' }
-]
+Output:
+
+```js
+{
+  tags: {
+    ar: 'Chubby Checker oppure  Beatles, The',
+    al: "Hits Of The 60's - Vol. 2 – Oldies",
+    ti: "Let's Twist Again",
+    au: 'Written by Kal Mann / Dave Appell, 1961',
+    length: '2'
+  },
+  lines: [
+    {
+      timestamp: 1000,
+      time: '00:01.00',
+      content: 'Naku Penda Piya-Naku Taka Piya-Mpenziwe'
+    },
+    {
+      timestamp: 12000,
+      time: '00:12.00',
+      content: 'Naku Penda Piya-Naku Taka Piya-Mpenziwe'
+    },
+    {
+      timestamp: 15030,
+      time: '00:15.30',
+      content: 'Some more lyrics ...'
+    }
+  ]
+}
 ```
 
 ### Lyric Cuepoint
@@ -41,9 +65,9 @@ console.log(lyricArr);
 ```js
 import { parse, cue } from "lyric.js";
 
-const lyricArr = parse(lyricText);
+const lyric = parse(lyricText);
 
-const update = cue(lyricArr, line => {
+const update = cue(lyric.lines, line => {
   console.log('current:', line);
 });
 
