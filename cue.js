@@ -11,9 +11,8 @@ export const cue = (arr, fn) => {
         (next ? time < next.timestamp : true) &&
         current !== x
       ) {
-        currentIndex = i;
         current = x;
-        fn && fn(x);
+        fn && fn(x, i);
       }
     });
   };

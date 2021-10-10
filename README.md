@@ -2,6 +2,13 @@
 
 > Lyric in JavaScript
 
+
+### Install
+
+```sh
+~$ npm i lyric.js --save
+```
+
 ### Lyric Parser
 
 ```js
